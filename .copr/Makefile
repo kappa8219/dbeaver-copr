@@ -1,5 +1,5 @@
 spec := dbeaver-ce.spec
-version := 26.1.5
+version := 26.1.4
 release_url := https://github.com/dbeaver/dbeaver/releases/download/$(version)
 sources := dbeaver-ce-$(version)-linux-x86_64.rpm dbeaver-ce-$(version)-linux-aarch64.rpm
 
