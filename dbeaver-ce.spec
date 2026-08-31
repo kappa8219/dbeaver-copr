@@ -3,7 +3,7 @@
 %global __requires_exclude_from ^%{_datadir}/dbeaver-ce/.*$
 
 Name:           dbeaver-ce
-Version:        26.1.5
+Version:        26.2.0
 Release:        1%{?dist}
 Summary:        Universal Database Manager and SQL Client
 License:        Apache-2.0
@@ -23,10 +23,10 @@ and SQL client.
 %prep
 %ifarch x86_64
 %global upstream_rpm %{SOURCE0}
-%global upstream_sha256 f1e763a7bd3d96256f3cb0859cfbba1910997568bd995ed1bd82e91af8e281aa
+%global upstream_sha256 acb3bc2fc2c3547df154f2bec20b5dc6b7941bd420ccb778de94e43e7170947e
 %else
 %global upstream_rpm %{SOURCE1}
-%global upstream_sha256 c2b61b64fb288bd080f95caec5f78167814c79a0c334dcd3e5a76c6700a03920
+%global upstream_sha256 a10c532c0ebce880643937083ccc3b77ca1a0a3869efab2b557d55a6b14a1972
 %endif
 echo "%{upstream_sha256}  %{upstream_rpm}" | sha256sum --check
 
@@ -45,5 +45,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/dbeaver-ce.desktop
 %{_datadir}/applications/dbeaver-ce.desktop
 
 %changelog
+* Mon Aug 31 2026 OK <o.kraievyi@quadient.com> - 26.2.0-1
+- Update to DBeaver Community Edition 26.2.0
+
 * Mon Aug 17 2026 OK <o.kraievyi@quadient.com> - 26.1.5-1
 - Package the upstream DBeaver Community Edition RPMs for COPR
