@@ -3,7 +3,7 @@
 %global __requires_exclude_from ^%{_datadir}/dbeaver-ce/.*$
 
 Name:           dbeaver-ce
-Version:        26.2.0
+Version:        26.2.1
 Release:        1%{?dist}
 Summary:        Universal Database Manager and SQL Client
 License:        Apache-2.0
@@ -45,8 +45,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/dbeaver-ce.desktop
 %{_datadir}/applications/dbeaver-ce.desktop
 
 %changelog
-* Mon Aug 31 2026 OK <o.kraievyi@gmail.com> - 26.2.0-1
-- Update to DBeaver Community Edition 26.2.0
-
-* Mon Aug 17 2026 OK <o.kraievyi@gmail.com> - 26.1.5-1
-- Package the upstream DBeaver Community Edition RPMs for COPR
