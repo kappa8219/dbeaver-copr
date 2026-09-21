@@ -23,10 +23,10 @@ and SQL client.
 %prep
 %ifarch x86_64
 %global upstream_rpm %{SOURCE0}
-%global upstream_sha256 acb3bc2fc2c3547df154f2bec20b5dc6b7941bd420ccb778de94e43e7170947e
+%global upstream_sha256 139bdf86ea5d5a6c592b81f602a3edd862407c87d3c094892fd1b37d4c1ff06f
 %else
 %global upstream_rpm %{SOURCE1}
-%global upstream_sha256 a10c532c0ebce880643937083ccc3b77ca1a0a3869efab2b557d55a6b14a1972
+%global upstream_sha256 d1848348eabf809be22ece10b4bda8bc0af3da6ae6c214c0f955084d63a1ba84
 %endif
 echo "%{upstream_sha256}  %{upstream_rpm}" | sha256sum --check
 
