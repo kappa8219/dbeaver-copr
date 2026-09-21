@@ -13,20 +13,6 @@ extracting their payloads.
    `dbeaver-ce.spec`, and `version` in `.copr/Makefile`.
 3. Build from SCM in COPR for the desired Fedora chroots.
 
-## Automated Copr builds
-
-Pushes to `main` that change `.copr/Makefile` or `dbeaver-ce.spec`
-automatically submit an SCM build through GitHub Actions. Configure these
-repository secrets before the first automated build:
-
-- `COPR_LOGIN`
-- `COPR_USERNAME`
-- `COPR_TOKEN`
-
-Use the corresponding values from the `[copr-cli]` section of
-`~/.config/copr`. The workflow also supports manual runs from the GitHub
-Actions page.
-
 Install the resulting package with:
 
 ```bash
