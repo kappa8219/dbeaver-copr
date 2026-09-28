@@ -11,7 +11,9 @@ extracting their payloads.
    SHA-256 digests from [DBeaver releases](https://github.com/dbeaver/dbeaver/releases).
 2. Update `Version`, `Release`, the source URLs and checksums in
    `dbeaver-ce.spec`, and `version` in `.copr/Makefile`.
-3. Build from SCM in COPR for the desired Fedora chroots.
+3. Build from SCM in COPR for Fedora 43, 44, 45, and Rawhide. The GitHub
+   Actions credential must be authorized to manage the project chroots and
+   submit builds.
 
 Install the resulting package with:
 

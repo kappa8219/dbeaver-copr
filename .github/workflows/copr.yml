@@ -16,12 +16,16 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: fedora:45
 
     steps:
+      - name: Install build dependencies
+        run: dnf --assumeyes install git python3-pip
+
       - uses: actions/checkout@v4
 
       - name: Install Copr CLI
-        run: pip install copr-cli
+        run: python3 -m pip install copr-cli
 
       - name: Configure Copr CLI
         env:
@@ -38,6 +42,14 @@ jobs:
           copr_url = https://copr.fedorainfracloud.org
           EOF
 
+      - name: Configure COPR chroots
+        run: |
+          copr-cli modify ok8219/DBeaver \
+            --chroot fedora-43-x86_64 \
+            --chroot fedora-44-x86_64 \
+            --chroot fedora-45-x86_64 \
+            --chroot fedora-rawhide-x86_64
+
       - name: Submit Copr SCM build
         run: |
           copr-cli buildscm ok8219/DBeaver \
@@ -50,4 +62,5 @@ jobs:
             --nowait \
             -r fedora-43-x86_64 \
             -r fedora-44-x86_64 \
-            -r fedora-45-x86_64
+            -r fedora-45-x86_64 \
+            -r fedora-rawhide-x86_64
