@@ -1,0 +1,47 @@
+name: Check upstream DBeaver release
+
+on:
+  schedule:
+    - cron: "27 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  check-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check latest stable release and update packaging
+        id: update
+        run: python3 .github/scripts/update_upstream.py | tee -a "$GITHUB_OUTPUT"
+        shell: bash
+
+      - name: Open or update release PR
+        if: steps.update.outputs.updated == 'true'
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/dbeaver-upstream-release
+          delete-branch: true
+          commit-message: "Update DBeaver to ${{ steps.update.outputs.version }}"
+          title: "Update DBeaver to ${{ steps.update.outputs.version }}"
+          body: |
+            Update the DBeaver Community Edition RPM package to the latest stable release.
+
+            Upstream release: ${{ steps.update.outputs.release_url }}
+            The x86_64 and aarch64 source checksums are calculated from the release assets.
+            The existing COPR workflow will build the package after this PR is merged.
+
+      - name: Notify maintainer about the PR
+        if: steps.pr.outputs.pull-request-operation == 'created' || steps.pr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ steps.pr.outputs.pull-request-url }}
+          VERSION: ${{ steps.update.outputs.version }}
+        run: gh pr comment "$PR_URL" --body "@kappa8219 DBeaver $VERSION update is ready for review: $PR_URL"
