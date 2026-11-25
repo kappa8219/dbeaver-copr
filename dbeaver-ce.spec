@@ -3,7 +3,7 @@
 %global __requires_exclude_from ^%{_datadir}/dbeaver-ce/.*$
 
 Name:           dbeaver-ce
-Version:        26.2.5
+Version:        26.2.5.2
 Release:        1%{?dist}
 Summary:        Universal Database Manager and SQL Client
 License:        Apache-2.0
@@ -23,10 +23,10 @@ and SQL client.
 %prep
 %ifarch x86_64
 %global upstream_rpm %{SOURCE0}
-%global upstream_sha256 b3f1fd619f0e3cde44938c69af977902f806e6559e07f04565505a8d54a63f7b
+%global upstream_sha256 81fad982fb25f28989c48d994bc6d3cbfa8d51a17df768b5f7f2164905937127
 %else
 %global upstream_rpm %{SOURCE1}
-%global upstream_sha256 257d5b385d469d9cf4178029b587dbc6b5a4ee62f3dc004758ca753b183a4196
+%global upstream_sha256 6df77ecb7ad76900bac2060a237241889c18441dcc121a6faebb8c4b1effa892
 %endif
 echo "%{upstream_sha256}  %{upstream_rpm}" | sha256sum --check
 
@@ -45,6 +45,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/dbeaver-ce.desktop
 %{_datadir}/applications/dbeaver-ce.desktop
 
 %changelog
+* Wed Nov 25 2026 OK <4374115+kappa8219@users.noreply.github.com> - 26.2.5.2-1
+- Update to DBeaver CE 26.2.5.2
+
 * Mon Nov 16 2026 OK <4374115+kappa8219@users.noreply.github.com> - 26.2.5-1
 - Update to DBeaver CE 26.2.5
 
